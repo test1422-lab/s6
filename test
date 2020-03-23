@@ -285,9 +285,15 @@ def encodefile_new(infile,verbose=False,use_tqdm=True,drem=False,fmc_name='./'+c
   scaleparams=' '
   noscale=False
   #find input w and h
-  try:   
-    input_video_height=int(os.popen('./ffprobe -v error -show_entries stream=height -of default=noprint_wrappers=1:nokey=1   "'+infile.strip()+'"').read().replace('N/A','').strip().replace(' ','').strip())
-    input_video_width=int(os.popen('./ffprobe -v error -show_entries stream=width -of default=noprint_wrappers=1:nokey=1   "'+infile.strip()+'"').read().replace('N/A','').strip().replace(' ','').strip())
+  try:
+    fh=[i.replace(' ','').strip() for i in os.popen('./ffprobe -v error -show_entries stream=height -of default=noprint_wrappers=1:nokey=1   "'+infile.strip()+'"').readlines() if i.replace(' ','').strip().isdigit()]
+    if fh:      input_video_height=int(fh[0])
+    else:print 'could not get video height with ffprobe. output was '+str(fh)
+    fw=[i.replace(' ','').strip() for i in os.popen('./ffprobe -v error -show_entries stream=width -of default=noprint_wrappers=1:nokey=1   "'+infile.strip()+'"').readlines() if i.replace(' ','').strip().isdigit()]
+    if fw:      input_video_width=int(fw[0])
+    else:print 'could not get video width with ffprobe. output was '+str(fw)
+    # ~ input_video_height=int(os.popen('./ffprobe -v error -show_entries stream=height -of default=noprint_wrappers=1:nokey=1   "'+infile.strip()+'"').read().replace('N/A','').strip().replace(' ','').strip())
+    # ~ input_video_width=int(os.popen('./ffprobe -v error -show_entries stream=width -of default=noprint_wrappers=1:nokey=1   "'+infile.strip()+'"').read().replace('N/A','').strip().replace(' ','').strip())
   except: 
     print highlight('could not find input video width and height with ffprobe!!','red')
     
