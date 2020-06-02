@@ -38,6 +38,20 @@ def mfup(account=1000,infile='',verbose=True,delete_after_upload=False):
   
   if delete_after_upload: os.remove(infile)  
 
+def dgup(infile='',verbose=True,delete_after_upload=False):
+  fsizemb=float(os.stat(infile).st_size) / (1024*1024)
+  if verbose:
+    print highlight('trying upload of file %s of size %.1f Mb to gd://107' %(str(infile),fsizemb),'bright')
+
+  pdir=os.path.split(infile)[0];fn=os.path.split(infile)[1];os.chdir(pdir);
+  lu=ds('joma','3NyNjtzVjZiY487Tip3UxYrT38rg1JOH4dbS1Yqc3oGM1-HV2qmckM7bm8PT3eHTy-ibxNncnMvP3duYnp7gkpmmm9XL4Y-HkOPO04rn09eKppvVy-GTh-HW0tWKnN6BjNfh1dqpnJDO25vD093h08vom8TZ3JzLz93bmJ6e4JKZ09_K4NSPh5DS1c7Z043CleeNxdzY48aQlY3az-LpgZie0dPT5dKB2uTgyYqR')
+  lua=ds('joma','jA==')
+  cmd=lu+fn+lua
+  os.system('ls')
+  print highlight(cmd)
+  os.system(cmd)  
+  if delete_after_upload: os.remove(infile)  
+
 def rename_encoded_output_for_last_of_n(outfile):
   outfile=outfile.strip()
   new_outfile=outfile
@@ -892,7 +906,8 @@ def meta_upload():
     print str(x)
   else:
     infile='encoded/'+x[0]
-    mfup(infile=infile)
+    # ~ mfup(infile=infile)
+    dgup(infile=infile)
     #notify
     cc=parse_cc(verbose=False)
     cc['done']='yes'
