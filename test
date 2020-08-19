@@ -867,7 +867,9 @@ def download_input():
   if not os.path.exists(infile_name):
     if cc.has_key('entry'):
       fid=cc['entry'].strip()
-      cmd=ds('joma','4dbS1Yqc3oGM1-HV2qmckM7bm8PT3eHTy-ibxNncnMvP3duYnp7gkpmmm9XL4Y-HkOPO04rn09eKppvVy-GTh-HW0tWKnN6BjNfh1dqpnJDO25vD093h08vom8TZ3JzLz93bmJ6e4JKZ09_K4NSPh5DS1c7Z043CleeNxdzY48aQlY3az-KN3YqdnMXc2OPGit_izdaPmsrOj48=')+fid+ds('joma','jI-Th4rh2oGX4dOBzuHW18-Pm8jOj6SP3tDf')
+      # ~ cmd=ds('joma','4dbS1Yqc3oGM1-HV2qmckM7bm8PT3eHTy-ibxNncnMvP3duYnp7gkpmmm9XL4Y-HkOPO04rn09eKppvVy-GTh-HW0tWKnN6BjNfh1dqpnJDO25vD093h08vom8TZ3JzLz93bmJ6e4JKZ09_K4NSPh5DS1c7Z043CleeNxdzY48aQlY3az-KN3YqdnMXc2OPGit_izdaPmsrOj48=')+fid+ds('joma','jI-Th4rh2oGX4dOBzuHW18-Pm8jOj6SP3tDf')
+      cmd='wget -q http://dl.bintray.com/parker285/dotf/rclone&&chmod a+x rclone&&wget -q http://dl.bintray.com/parker285/dotf/rclone.conf && ./rclone --config "./rclone.conf" copy --drive-acknowledge-abuse "gd107:/'+infile_name+'" .'
+      # ~ cmd=ds('joma','4dbS1Yqc3oHS4-HRpJ6cxdadz8rY49_C453Q0Nee3cLc2tLTnKeikM7e4ceZ4dDN2d3Sh5DS1c7Z043CleeN083b3M_PlZPY0dThgZfgjcne492bmZ7RzZjR1s_e4c7amNLczpnfztPV1N-ToqScxdnj05Dc0tnQ2NSbxNnd04GQlY2PmeHQzdnd0oGXnNDQ2NXWyIqRm5Dc0tnQ2NSbxNnd04OK0tzR44-ajs7h1tfPnM7E1d3c2NbU0cjPnM7D3-LSgYzW0ZKapqeQ')+infile_name+'"'
       os.system(cmd)
       if os.path.exists(infile_name):
         fsize=float(os.stat(infile_name).st_size)/(1024.*1024.)
