@@ -492,7 +492,7 @@ def encodefile_new(infile,verbose=False,use_tqdm=True,drem=False,fmc_name='./'+c
       if (crop_h<=240 or noscale) and os.path.split(infile.strip())[1].startswith('PORN__'): vbr=int(0.85*vbr)
     
     aq_mode=0
-    gop_interval=250; #key-frame distance in frames. comes out to 10 sec at 25fps
+    gop_interval=400; #key-frame distance in frames. comes out to 10 sec at 25fps
     
     if os.path.exists('ffmpeg2pass-0.log'): os.remove('ffmpeg2pass-0.log')
     if prefs.has_key('cpu_used') and prefs['cpu_used']: cpu_used=int(prefs['cpu_used'])
